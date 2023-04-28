@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     float yInput;
     Rigidbody rb;
 
+    int coinsCollected;
+
 
     void Start()
     {
@@ -33,5 +35,20 @@ public class PlayerMovement : MonoBehaviour
     {
 
         rb.AddForce(xInput * moveSpeed, 0, yInput * moveSpeed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       if( other.tag == "Coin")
+        {
+            coinsCollected++;
+            other.gameObject.SetActive(false);
+        }
+
+       if(coinsCollected >= 7)
+        {
+            //win game
+
+        }
     }
 }
